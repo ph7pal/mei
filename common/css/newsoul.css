@@ -12,7 +12,7 @@ a:hover{
 
 /*一些自定义样式*/
 .wrapper{
-    width:820px;
+    width:960px;
     margin:0 auto;
 }
 .wrapper .navbar-collapse{
@@ -24,7 +24,7 @@ a:hover{
     background: none;
 }
 .header-logo{
-    width: 820px;
+    width: 960px;
     height: 100px;
     margin: 0 auto;
     font-size: 48px;
@@ -38,11 +38,159 @@ a:hover{
 .header-logo a:hover{
     text-decoration: none;
 }
-.footer-holder{height: 100px;margin: 0 auto;width: 820px;clear: both}
+.footer-holder{height: 100px;margin: 0 auto;width: 960px;clear: both}
+.faith {
+    background:   #eee;
+    height: 93px;
+    overflow: hidden;
+    padding-top: 14px;
+    width: 100%;
+}
+
+.faith .ym-wrap {
+    width: 960px;
+      font-family: "Microsoft Yahei";
+    font-size: 12px;
+    margin: 0 auto;
+}
+.faith span.prof {
+    background-position: 20px -1291px;
+}
+
+.faith span.sunl {
+    background-position: 16px -1359px;
+}
+
+.faith span.conv {
+    background-position: 16px -1432px;
+}
+.faith span.cheep {
+    background-position: 16px -1506px;
+    border: 0 none;
+}
+.tb h2{ 
+    color: #5B6A69;
+    font-size: 18px;   
+    padding-top: 4px;
+    padding-left: 92px;
+    margin:0;
+}
+.tb p{ color: #909f9e;
+    font-size: 12px;
+    padding-left: 92px;   padding-top: 4px;}
+.faith span {
+    background: url("../images/headnew.png") no-repeat;
+}
+.faith span {
+    border-right: 1px dotted #cdcdcd;
+    display: block;
+    float: left;
+    height: 56px;
+    margin-top: 15px;
+    width: 240px;
+}
+/*底部黑色*/
+#footer_Bk {
+    background-color: #292929;
+    height: 260px;
+    line-height: 16px;
+    min-width: 960px;
+}
+.footCon {
+    margin: auto;
+    width: 960px;
+}
+.footCon ul {
+    overflow: hidden;
+    padding: 30px 0 0;
+    width: 960px;
+}
+.footCon ul li {
+    float: left;
+    vertical-align: bottom;
+}
+.footCon ul .link_a {
+    border-left: 1px solid rgb(60, 60, 60);
+    margin-left: 10px;
+    padding-left: 15px;
+}
+.footCon ul .link_a a {
+    /*background: url("../images/ico.jpg") no-repeat scroll left center rgba(0, 0, 0, 0);*/
+    color: #898989;
+    display: block;
+    margin-bottom: 10px;
+    padding-left: 15px;
+}
+.footCon ul .link_a p {
+    padding-bottom: 10px;
+}
+.footCon ul .link_a p a {
+    color: #898989;
+    display: inline;
+}
+.footCon ul .img {
+    margin-left: 40px;
+}
+.footCon ul .img_first {
+    margin: 0;
+}
+.footCon ul .img span {
+    display: block;
+    height: 95px;
+    width: 105px;
+}
+.footCon ul .img .ft_pic1 {
+    background: url("../images/sy-2.jpg") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    margin-top: 50px;
+}
+.footCon ul .img .ft_pic2 {
+    background: url("../images/sy-2.jpg") no-repeat scroll 0 -102px rgba(0, 0, 0, 0);
+    margin-top: 50px;
+}
+.footCon ul .img .ft_pic3 {
+    background: url("../images/sy-2.jpg") no-repeat scroll 0 -205px rgba(0, 0, 0, 0);
+    margin-top: 50px;
+}
+.footCon ul .img .ft_pic4 {
+    background: url("../images/sy-2.jpg") no-repeat scroll 0 -306px rgba(0, 0, 0, 0);
+    margin-top: 50px;
+}
+/*底部关于本站*/
+.footer_us {
+    background: none repeat scroll 0 0 rgb(17, 17, 17);
+    font-family: "宋体";
+    font-size: 12px;
+    height: 120px;
+    line-height: 26px;
+    min-width: 960px;
+    overflow: hidden;
+}
+.footer_us .Con {
+    margin: auto;
+    overflow: hidden;
+    padding-top: 20px;
+    width: 960px;
+}
+.footer_us .Con .logo {
+    float: left;
+    padding-left: 10px;
+    padding-top: 10px;
+    width: 315px;
+}
+.footer_us .Con .txt {
+    float: right;
+    padding-top: 8px;
+    width: 610px;
+}
+.footer_us .Con .txt p {
+    color: rgb(74, 74, 74);
+    margin: 0 auto;
+    padding-bottom: 10px;
+}
 /*全局左右宽度*/
 .main-page{
     float:left;
-    width: 550px;
+    width: 600px;
     min-height:200px;
     _height:200px;
     background:#fff;
@@ -54,7 +202,7 @@ a:hover{
 }
 .aside-page{
     float:right;
-    width:220px;
+    width:300px;
 }
 .aside-page .aside-mod{
     width: 100%;
@@ -197,3 +345,145 @@ background-color: #00a5e0;
 .btn-success:hover{
     background-color: #00a5e0;
 }
+/*更多*/
+.more-awesome {
+    color: #999;
+    font-size: 14px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+.more-awesome span {
+    position: relative;
+    top: 13px;
+    background-color: #fff;
+    padding: 0 20px;
+}
+
+/*头部色块*/
+@media (min-width:768px) {
+	.navbar {
+		min-height: 40px
+	}
+
+	.navbar-nav>li>a {
+		font-size: 14px;
+		padding-top: 11px;
+		padding-bottom: 11px
+	}
+
+	.navbar-brand {
+		padding-top: 0;
+		padding-bottom: 0;
+		line-height: 42px;
+		height: 42px
+	}
+}
+
+.jumbotron {
+	position: relative;
+	padding: 20px 0;
+	color: #fff;
+	text-align: center;
+	text-shadow: 0 1px 3px rgba(0,0,0,.4),0 0 30px rgba(0,0,0,.075);
+	background: #424242;	
+	-webkit-box-shadow: inset 0 3px 7px rgba(0,0,0,.2),inset 0 -3px 7px rgba(0,0,0,.2);
+	-moz-box-shadow: inset 0 3px 7px rgba(0,0,0,.2),inset 0 -3px 7px rgba(0,0,0,.2);
+	box-shadow: inset 0 3px 7px rgba(0,0,0,.2),inset 0 -3px 7px rgba(0,0,0,.2)
+}
+
+.jumbotron a {
+	color: #fff;
+	color: rgba(255,255,255,.5);
+	-webkit-transition: all .2s ease-in-out;
+	-moz-transition: all .2s ease-in-out;
+	transition: all .2s ease-in-out
+}
+
+.jumbotron aa:hover {
+	color: #fff;
+	text-shadow: 0 0 10px rgba(255,255,255,.25)
+}
+
+.jumbotron .container {
+	position: relative;
+	z-index: 2
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1) {
+	.jumbotron:after {
+		background-size: 150px 150px
+	}
+}
+
+.masthead,.posthead {
+	padding: 20px 0;
+	margin-bottom: 0;
+	color: #fff
+}
+
+@media screen and (min-width:768px) {
+	.masthead,.posthead {
+		padding: 20px 0
+	}
+}
+
+.masthead h1 {
+	font-size: 60px;
+	line-height: 1;
+	letter-spacing: -2px;
+	font-weight: 700
+}
+
+@media screen and (min-width:768px) {
+	.masthead h1 {
+		font-size: 90px
+	}
+}
+
+@media screen and (min-width:992px) {
+	.masthead h1 {
+		font-size: 100px
+	}
+}
+
+.masthead h2 {
+	font-size: 18px;
+	font-weight: 200;
+	line-height: 1.25
+}
+
+@media screen and (min-width:768px) {
+	.masthead h2 {
+		font-size: 24px
+	}
+}
+
+@media screen and (min-width:992px) {
+	.masthead h2 {
+		font-size: 30px
+	}
+}
+
+.masthead p {
+	font-size: 40px;
+	font-weight: 200;
+	line-height: 1.25
+}
+
+.posthead h1{
+    font-size: 36px;
+    line-height: 1.7
+}
+.posthead p{
+    font-size: 16px;
+}
+.posthead .thumbnail{
+    background: none;
+    border: none
+}
+.posthead .thumbnail .caption{
+    color: #FFF
+}
+/*头部色块--end*/

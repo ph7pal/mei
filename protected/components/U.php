@@ -21,20 +21,22 @@ class U extends CUserIdentity {
      */
     public function authenticate() {
         $validator = new CEmailValidator;
+        //判断是否是邮箱，是邮箱则以邮箱登录
         if($validator->validateValue($this->email)){
             $user = Users::model()->find('email=:email', array(':email'=>  $this->email));
         }else{
-            $user = Users::model()->find('truename=:truename', array(':truename'=>  $this->email));
+            //不是邮箱则认为是电话号码
+            $user = Users::model()->find('phone=:phone', array(':phone'=>  $this->email));
         }
         if ($user === null)
             $this->errorCode = self::ERROR_USERNAME_INVALID;
-        else if($user['status']!=Posts::STATUS_PASSED)
+        else if($user['status']!=  Common::STATUS_PASSED)
             $this->errorCode = self::ERROR_USERNAME_INVALID;
-        else if (!$this->validatePassword($user->password))
+        else if (!$this->validatePassword($user->password,$user->hash))
             $this->errorCode = self::ERROR_PASSWORD_INVALID;
         else {
             $this->_id = $user->id;
-            $this->username = $user->truename;
+            $this->username = $user->username;
             $this->errorCode = self::ERROR_NONE;
         }
         return $this->errorCode == self::ERROR_NONE;
@@ -47,10 +49,10 @@ class U extends CUserIdentity {
         return $this->_id;
     }
 
-    public function validatePassword($password) {
+    public function validatePassword($password,$hash) {
         //echo $password.'@####@'.$this->password;
 
-        return md5($this->password) == $password ? true : false;
+        return md5($this->password.$hash) == $password ? true : false;
     }
 
 }

@@ -7,20 +7,16 @@
  * @copyright Copyright©2015 阿年飞少 
  * @datetime 2015-6-23  17:30:52 
  */
-$this->breadcrumbs = array(
-    CHtml::link('首页', zmf::config('baseurl')),
-    '词语大全' => array('chengyu/index'),
-);
 ?>
 <div class="login-form">
     <?php $form=$this->beginWidget('CActiveForm', array(
     'id'=>'login-form',
     'enableAjaxValidation'=>false,
-    'enableClientValidation'=>true
+    'enableClientValidation'=>false
     )); ?>
     <div class="form-group">
         <?php echo $form->labelEx($model,'email'); ?>
-        <?php echo $form->textField($model,'email', array('class'=>'form-control','placeholder'=>'邮箱/用户名')); ?> <?php echo $form->error($model,'email'); ?>
+        <?php echo $form->textField($model,'email', array('class'=>'form-control','placeholder'=>'邮箱/手机号')); ?> <?php echo $form->error($model,'email'); ?>
     </div>
     <div class="form-group">
         <?php echo $form->labelEx($model,'password'); ?>

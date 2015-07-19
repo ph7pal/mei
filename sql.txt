@@ -1,0 +1,1 @@
+alter table pre_youhui add cTime int(10) UNSIGNED not null;

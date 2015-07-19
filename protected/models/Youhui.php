@@ -34,11 +34,8 @@ class Youhui extends CActiveRecord {
         // will receive user inputs.
         return array(
             array('attachid, hospital, doctor, title, desc, startTime, endTime, price, oldPrice, yuyue, comments', 'required'),
-            array('attachid, hospital, doctor, startTime, endTime, yuyue, comments', 'length', 'max' => 10),
+            array('attachid, hospital, doctor, startTime, endTime, yuyue, comments,cTime', 'length', 'max' => 10),
             array('title, desc, price, oldPrice', 'length', 'max' => 255),
-            // The following rule is used by search().
-            // @todo Please remove those attributes that should not be searched.
-            array('id, attachid, hospital, doctor, title, desc, startTime, endTime, price, oldPrice, yuyue, comments', 'safe', 'on' => 'search'),
         );
     }
 
@@ -69,42 +66,8 @@ class Youhui extends CActiveRecord {
             'oldPrice' => '原价',
             'yuyue' => '预约人数',
             'comments' => '评论人数',
+            'cTime' => '创建时间',
         );
-    }
-
-    /**
-     * Retrieves a list of models based on the current search/filter conditions.
-     *
-     * Typical usecase:
-     * - Initialize the model fields with values from filter form.
-     * - Execute this method to get CActiveDataProvider instance which will filter
-     * models according to data in model fields.
-     * - Pass data provider to CGridView, CListView or any similar widget.
-     *
-     * @return CActiveDataProvider the data provider that can return the models
-     * based on the search/filter conditions.
-     */
-    public function search() {
-        // @todo Please modify the following code to remove attributes that should not be searched.
-
-        $criteria = new CDbCriteria;
-
-        $criteria->compare('id', $this->id, true);
-        $criteria->compare('attachid', $this->attachid, true);
-        $criteria->compare('hospital', $this->hospital, true);
-        $criteria->compare('doctor', $this->doctor, true);
-        $criteria->compare('title', $this->title, true);
-        $criteria->compare('desc', $this->desc, true);
-        $criteria->compare('startTime', $this->startTime, true);
-        $criteria->compare('endTime', $this->endTime, true);
-        $criteria->compare('price', $this->price, true);
-        $criteria->compare('oldPrice', $this->oldPrice, true);
-        $criteria->compare('yuyue', $this->yuyue, true);
-        $criteria->compare('comments', $this->comments, true);
-
-        return new CActiveDataProvider($this, array(
-            'criteria' => $criteria,
-        ));
     }
 
     /**

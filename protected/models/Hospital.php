@@ -44,14 +44,11 @@ class Hospital extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('uid, title, nickname, address, classify, class, attachid, xukezheng, zhizhao, number, url, intro, content, score, scorer, score_fuwu, score_hj, score_xg, lat, long, doctors, youhui, favors', 'required'),
+            array('title, nickname, address, classify, class, xukezheng, zhizhao, number', 'required'),
             array('classify, class', 'numerical', 'integerOnly' => true),
             array('uid, attachid, xukezheng, zhizhao, scorer, score_fuwu, score_hj, score_xg, doctors, youhui, favors', 'length', 'max' => 10),
             array('title, nickname, address, number, url, intro, content, lat, long', 'length', 'max' => 255),
             array('score', 'length', 'max' => 6),
-            // The following rule is used by search().
-            // @todo Please remove those attributes that should not be searched.
-            array('uid, title, nickname, address, classify, class, attachid, xukezheng, zhizhao, number, url, intro, content, score, scorer, score_fuwu, score_hj, score_xg, lat, long, doctors, youhui, favors', 'safe', 'on' => 'search'),
         );
     }
 
@@ -71,16 +68,16 @@ class Hospital extends CActiveRecord {
     public function attributeLabels() {
         return array(
             'uid' => '所属用户',
-            'title' => '名称',
-            'nickname' => '别名',
-            'address' => '地址',
-            'classify' => '医院类型：公立、私立',
-            'class' => '医院等级：医院、诊所、门诊部',
+            'title' => '医院名称',
+            'nickname' => '医院别名',
+            'address' => '医院地址',
+            'classify' => '医院类型',
+            'class' => '医院等级',
             'attachid' => '封面图',
             'xukezheng' => '许可证图片ID',
             'zhizhao' => '执照图片ID',
-            'number' => '电话',
-            'url' => '网址',
+            'number' => '医院电话',
+            'url' => '医院网址',
             'intro' => '理念',
             'content' => '简介',
             'score' => '评分',
@@ -97,52 +94,6 @@ class Hospital extends CActiveRecord {
     }
 
     /**
-     * Retrieves a list of models based on the current search/filter conditions.
-     *
-     * Typical usecase:
-     * - Initialize the model fields with values from filter form.
-     * - Execute this method to get CActiveDataProvider instance which will filter
-     * models according to data in model fields.
-     * - Pass data provider to CGridView, CListView or any similar widget.
-     *
-     * @return CActiveDataProvider the data provider that can return the models
-     * based on the search/filter conditions.
-     */
-    public function search() {
-        // @todo Please modify the following code to remove attributes that should not be searched.
-
-        $criteria = new CDbCriteria;
-
-        $criteria->compare('uid', $this->uid, true);
-        $criteria->compare('title', $this->title, true);
-        $criteria->compare('nickname', $this->nickname, true);
-        $criteria->compare('address', $this->address, true);
-        $criteria->compare('classify', $this->classify);
-        $criteria->compare('class', $this->class);
-        $criteria->compare('attachid', $this->attachid, true);
-        $criteria->compare('xukezheng', $this->xukezheng, true);
-        $criteria->compare('zhizhao', $this->zhizhao, true);
-        $criteria->compare('number', $this->number, true);
-        $criteria->compare('url', $this->url, true);
-        $criteria->compare('intro', $this->intro, true);
-        $criteria->compare('content', $this->content, true);
-        $criteria->compare('score', $this->score, true);
-        $criteria->compare('scorer', $this->scorer, true);
-        $criteria->compare('score_fuwu', $this->score_fuwu, true);
-        $criteria->compare('score_hj', $this->score_hj, true);
-        $criteria->compare('score_xg', $this->score_xg, true);
-        $criteria->compare('lat', $this->lat, true);
-        $criteria->compare('long', $this->long, true);
-        $criteria->compare('doctors', $this->doctors, true);
-        $criteria->compare('youhui', $this->youhui, true);
-        $criteria->compare('favors', $this->favors, true);
-
-        return new CActiveDataProvider($this, array(
-            'criteria' => $criteria,
-        ));
-    }
-
-    /**
      * Returns the static model of the specified AR class.
      * Please note that you should have this exact method in all your CActiveRecord descendants!
      * @param string $className active record class name.
@@ -150,6 +101,39 @@ class Hospital extends CActiveRecord {
      */
     public static function model($className = __CLASS__) {
         return parent::model($className);
+    }
+
+    /**
+     * 医院的类型
+     * @param type $type
+     * @return string
+     */
+    public static function exClassify($type) {
+        $arr = array(
+            '1' => '公立',
+            '2' => '私立',
+        );
+        if ($type == 'admin') {
+            return $arr;
+        }
+        return $arr[$type];
+    }
+    
+    /**
+     * 医院的等级
+     * @param type $type
+     * @return string
+     */
+    public static function exClass($type) {
+        $arr = array(
+            '1' => '医院',
+            '2' => '诊所',
+            '3' => '门诊部',
+        );
+        if ($type == 'admin') {
+            return $arr;
+        }
+        return $arr[$type];
     }
 
 }

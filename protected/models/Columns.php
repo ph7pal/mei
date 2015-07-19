@@ -125,5 +125,57 @@ class Columns extends CActiveRecord {
     public static function model($className = __CLASS__) {
         return parent::model($className);
     }
+    
+    /**
+     * 根据当前选择地区生产导航条
+     * @param type $areaId 地区ID
+     * @param type $areaTitle 地区标题
+     * @param type $likeAreas 用户关注的地区
+     * @return string
+     */
+    public static function navbar() {
+        $arr = $attr = array();
+        $arr[] = array(
+            'title' => '整形特惠',
+            'url' => Yii::app()->createUrl('youhui/index', $attr),
+            'active' => (Yii::app()->getController()->id == 'youhui' && Yii::app()->getController()->getAction()->id != 'create')
+        );
+        $arr[] = array(
+            'title' => '找医院',
+            'url' => Yii::app()->createUrl('hospital/index', $attr),
+            'active' => (Yii::app()->getController()->id == 'hospital' && Yii::app()->getController()->getAction()->id != 'create')
+        );
+        $arr[] = array(
+            'title' => '整形项目',
+            'url' => Yii::app()->createUrl('xiangmu/index', $attr),
+            'active' => (Yii::app()->getController()->id == 'xiangmu')
+        );
+//        $arr[] = array(
+//            'title' => zmf::t('travelJournal'),
+//            'url' => Yii::app()->createUrl('travel/index', $attr),
+//            'active' => (Yii::app()->getController()->id == 'travel' && in_array(Yii::app()->getController()->getAction()->id, array('index', 'view')))
+//        );
+        $arr[] = array(
+            'title' => '美丽日记',
+            'url' => Yii::app()->createUrl('userCases/index',$attr),
+            'active' => Yii::app()->getController()->id == 'userCases'
+        );
+        $arr[] = array(
+            'title' => '有问必答',
+            'url' => Yii::app()->createUrl('questions/index',$attr),
+            'active' => Yii::app()->getController()->id == 'questions'
+        );
+        $arr[] = array(
+            'title' => '整形资讯',
+            'url' => Yii::app()->createUrl('posts/index'),
+            'active' => (Yii::app()->getController()->id == 'posts')
+        );
+        $arr[] = array(
+            'title' => '兴趣圈子',
+            'url' => Yii::app()->createUrl('quanzi/index'),
+            'active' => (Yii::app()->getController()->id == 'quanzi')
+        );
+        return $arr;
+    }
 
 }

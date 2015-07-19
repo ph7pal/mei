@@ -28,7 +28,7 @@ class Q extends T {
         if (!Yii::app()->user->isGuest) {
             $uid = Yii::app()->user->id;
             $userInfo = Users::getUserInfo($uid);
-            $this->truename = $userInfo['truename'];
+            $this->truename = $userInfo['username'];
             $this->userInfo = $userInfo;            
         }
         $this->pageTitle=zmf::config('sitename');

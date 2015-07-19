@@ -43,14 +43,11 @@ class Doctor extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('uid, classify, sex, localarea, practice_number, check_number, hospital, hospital_name, attachid, job_title, content, service_concept, education, idcard, posts, cases, thanks, order, yuyue, score, scorer, hits', 'required'),
+            array('localarea, practice_number, check_number,hospital_name, attachid', 'required'),
             array('sex', 'numerical', 'integerOnly' => true),
             array('uid, classify, localarea, hospital, attachid, posts, cases, thanks, order, yuyue, score, scorer, hits', 'length', 'max' => 10),
             array('practice_number, check_number, idcard', 'length', 'max' => 32),
             array('hospital_name, job_title, content, service_concept, education', 'length', 'max' => 255),
-            // The following rule is used by search().
-            // @todo Please remove those attributes that should not be searched.
-            array('uid, classify, sex, localarea, practice_number, check_number, hospital, hospital_name, attachid, job_title, content, service_concept, education, idcard, posts, cases, thanks, order, yuyue, score, scorer, hits', 'safe', 'on' => 'search'),
         );
     }
 
@@ -92,51 +89,6 @@ class Doctor extends CActiveRecord {
             'scorer' => '评价人数',
             'hits' => 'Hits',
         );
-    }
-
-    /**
-     * Retrieves a list of models based on the current search/filter conditions.
-     *
-     * Typical usecase:
-     * - Initialize the model fields with values from filter form.
-     * - Execute this method to get CActiveDataProvider instance which will filter
-     * models according to data in model fields.
-     * - Pass data provider to CGridView, CListView or any similar widget.
-     *
-     * @return CActiveDataProvider the data provider that can return the models
-     * based on the search/filter conditions.
-     */
-    public function search() {
-        // @todo Please modify the following code to remove attributes that should not be searched.
-
-        $criteria = new CDbCriteria;
-
-        $criteria->compare('uid', $this->uid, true);
-        $criteria->compare('classify', $this->classify, true);
-        $criteria->compare('sex', $this->sex);
-        $criteria->compare('localarea', $this->localarea, true);
-        $criteria->compare('practice_number', $this->practice_number, true);
-        $criteria->compare('check_number', $this->check_number, true);
-        $criteria->compare('hospital', $this->hospital, true);
-        $criteria->compare('hospital_name', $this->hospital_name, true);
-        $criteria->compare('attachid', $this->attachid, true);
-        $criteria->compare('job_title', $this->job_title, true);
-        $criteria->compare('content', $this->content, true);
-        $criteria->compare('service_concept', $this->service_concept, true);
-        $criteria->compare('education', $this->education, true);
-        $criteria->compare('idcard', $this->idcard, true);
-        $criteria->compare('posts', $this->posts, true);
-        $criteria->compare('cases', $this->cases, true);
-        $criteria->compare('thanks', $this->thanks, true);
-        $criteria->compare('order', $this->order, true);
-        $criteria->compare('yuyue', $this->yuyue, true);
-        $criteria->compare('score', $this->score, true);
-        $criteria->compare('scorer', $this->scorer, true);
-        $criteria->compare('hits', $this->hits, true);
-
-        return new CActiveDataProvider($this, array(
-            'criteria' => $criteria,
-        ));
     }
 
     /**

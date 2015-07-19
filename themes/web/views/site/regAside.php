@@ -1,0 +1,1 @@
+<p>已是会员？<?php echo CHtml::link('立即登录',array('site/login'));?></p>

@@ -22,6 +22,10 @@
  */
 class Users extends CActiveRecord {
 
+    const CLASSIFY_COMMON_USER = 1;
+    CONST CLASSIFY_DOCTOR = 2;
+    CONST CLASSIFY_HOSPITAL = 3;
+
     /**
      * @return string the associated database table name
      */
@@ -36,10 +40,12 @@ class Users extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('username, email, phone, password, classify, groupid, last_login_ip, last_login_time, login_count, status, cTime, emailstatus, hash, areaid', 'required'),
+            array('cTime,last_login_time', 'default', 'setOnEmpty' => true, 'value' => zmf::now()),
+            array('username, email, password, classify,phone', 'required'),
             array('classify, last_login_ip, status, emailstatus', 'numerical', 'integerOnly' => true),
             array('username', 'length', 'max' => 50),
             array('email', 'length', 'max' => 255),
+            array('email', 'email'),
             array('phone', 'length', 'max' => 16),
             array('password', 'length', 'max' => 32),
             array('groupid', 'length', 'max' => 5),
@@ -49,6 +55,23 @@ class Users extends CActiveRecord {
             // @todo Please remove those attributes that should not be searched.
             array('id, username, email, phone, password, classify, groupid, last_login_ip, last_login_time, login_count, status, cTime, emailstatus, hash, areaid', 'safe', 'on' => 'search'),
         );
+    }
+
+    public function beforeSave() {
+        $randKey = tools::randMykeys(8);
+        $this->hash = $randKey;
+        $this->password = md5($this->password . $randKey);
+        if ($this->classify == Users::CLASSIFY_COMMON_USER) {
+            $this->status = Common::STATUS_PASSED;
+        } else {
+            $this->status = Common::STATUS_STAYCHECK;
+        }
+        if ($this->classify == Users::CLASSIFY_HOSPITAL) {
+            if (!$this->areaid) {
+                $this->addError('areaid', '请选择所在城市省份');
+            }
+        }
+        return true;
     }
 
     /**
@@ -130,6 +153,29 @@ class Users extends CActiveRecord {
      */
     public static function model($className = __CLASS__) {
         return parent::model($className);
+    }
+
+    /**
+     * 获取用户信息
+     * @param type $uid
+     * @param type $type
+     * @return boolean
+     */
+    public static function getUserInfo($uid, $type = '') {
+        if (!$uid) {
+            return false;
+        }
+        $info = Users::model()->findByPk($uid);
+        if (!$info) {
+            Yii::app()->user->logout();
+            return false;
+        }
+        unset($info->password);
+        if (!empty($type)) {
+            return $info->$type;
+        } else {
+            return $info;
+        }
     }
 
 }
