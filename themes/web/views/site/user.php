@@ -1,5 +1,4 @@
 <div class="main-page form-horizontal">
-    
     <?php $form=$this->beginWidget('CActiveForm', array(
             'id'=>'users-addUser-form',
             'enableAjaxValidation'=>false,
@@ -16,5 +15,5 @@
     <?php $this->endWidget(); ?>
 </div>
 <div class="aside-page">
-    <?php $this->renderPartial('/site/regAside');?>
+    <?php $this->renderPartial('/site/regAside');?>    
 </div>
